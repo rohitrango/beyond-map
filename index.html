@@ -41,6 +41,7 @@
 </head>
 <body>
 
+
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -131,7 +132,7 @@
           </div>
 
           <div class="column has-text-centered">
-            <p>Accepted as a <i>highlight paper</i> at CVPR 2023 (acceptance rate ~ 2.5%).</p>
+            <p>Accepted as a <i>highlight paper</i> at CVPR 2023.</p>
           </div>
         </div>
       </div>
@@ -139,20 +140,36 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <img src="./static/images/without.png" alt="without Semantic NMS and Sorting">
-        Without Semantic NMS and Sorting
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">Without Semantic Sorting and NMS</div>
+        <div class="column">With Semantic Sorting and NMS</div>
       </div>
-      <div class="column">
-        <img src="./static/images/with.png" alt="With Semantic NMS and Sorting">
-        With Semantic NMS and Sorting
+      <!-- carousel -->
+      <div id="results-carousel" class="is-centered carousel results-carousel">
+        <div class="item item-1">
+          <img src="./static/images/image1.png" alt="image">
+        </div>
+        <div class="item item-2">
+          <div class="columns is-centered has-text-centered">
+            <div class="column">
+              <img src="./static/images/image2.png" style="height: 350px" alt="image">
+            </div>
+          </div>
+        </div>
+        <div class="item item-3">
+          <img src="./static/images/image3.png" alt="image">
+        </div>
+        <div class="item item-4">
+          <img src="./static/images/image4.png" alt="image">
+        </div>
       </div>
+
     </div>
   </div>
-</section>
+</section> 
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -205,6 +222,21 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h3>Solution</h3>
+    We propose a three-fold contribution:
+    <ul>
+      <li>Demonstrate the shortcoming of AP to quantify low-confidence false positives leading to <i>hedging</i>. </li>
+      <li>Propose existing and new measures to quantify the amount of both spatial and categorical hedging.</li>
+      <li>Propose plug-and-play modules and NMS to mitigate both forms of hedging.</li>
+    </ul>
+  <br>
+  Please read the paper for more exciting details!
+  </div>
+</section>
+
+<!-- Bibtex -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
@@ -218,6 +250,7 @@
 </section>
 
 
+<!-- Footer -->
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
@@ -240,6 +273,15 @@
     </div>
   </div>
 </footer>
+
+<script>
+  bulmaCarousel.attach('#results-carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      infinite: true,
+      autoplay: true,
+  });
+</script>
 
 </body>
 </html>
