@@ -167,6 +167,34 @@
   </div>
 </section> 
 
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h3>Problem statement</h3>
+    An initial analysis shows that state-of-the-art models achieve significant gains in AP, but produce qualitatively unsatisfactory results with a lot of duplicates.
+    A deeper dive shows that these predictions are not penalized by AP, and rather, are rewarded by the metric. <br>
+  </div>
+  <!-- image -->
+  <div class="container is-max-desktop content is-centered has-text-centered">
+    <img src="./static/images/apcurves.png" alt="AP curves for person">
+    AP curves for person class for <b>(a) MaskNMS</b> , <b>(b) SoftNMS</b>, and <b>(c) MatrixNMS</b> shows the tremendous number of false-positives that are introduced (upto 4x compared to MaskNMS), but virtually have the same AP.
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h3>Solution</h3>
+    We propose a three-fold contribution:
+    <ul>
+      <li>Demonstrate the shortcoming of AP to quantify low-confidence false positives leading to <i>hedging</i>. </li>
+      <li>Propose existing and new measures to quantify the amount of both spatial and categorical hedging.</li>
+      <li>Propose plug-and-play modules and NMS to mitigate both forms of hedging.</li>
+    </ul>
+  <br>
+  Please read the paper for more exciting details!
+  </div>
+</section>
+
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -205,32 +233,6 @@
 </section>
 
 
-<section class="section">
-  <div class="container is-max-desktop content">
-    <h3>Problem statement</h3>
-    An initial analysis shows that state-of-the-art models achieve significant gains in AP, but produce qualitatively unsatisfactory results with a lot of duplicates.
-    A deeper dive shows that these predictions are not penalized by AP, and rather, are rewarded by the metric. <br>
-  </div>
-  <!-- image -->
-  <div class="container is-max-desktop content is-centered has-text-centered">
-    <img src="./static/images/apcurves.png" alt="AP curves for person">
-    AP curves for person class for <b>(a) MaskNMS</b> , <b>(b) SoftNMS</b>, and <b>(c) MatrixNMS</b> shows the tremendous number of false-positives that are introduced (upto 4x compared to MaskNMS), but virtually have the same AP.
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop content">
-    <h3>Solution</h3>
-    We propose a three-fold contribution:
-    <ul>
-      <li>Demonstrate the shortcoming of AP to quantify low-confidence false positives leading to <i>hedging</i>. </li>
-      <li>Propose existing and new measures to quantify the amount of both spatial and categorical hedging.</li>
-      <li>Propose plug-and-play modules and NMS to mitigate both forms of hedging.</li>
-    </ul>
-  <br>
-  Please read the paper for more exciting details!
-  </div>
-</section>
 
 <!-- Bibtex -->
 <section class="section" id="BibTeX">
