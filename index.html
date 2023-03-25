@@ -126,13 +126,51 @@
               <span class="link-block">
             </div>
           </div>
-
           <div class="column has-text-centered">
             <p>Accepted as a <i>highlight paper</i> at CVPR 2023.</p>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h3>Introduction</h3>
+    Correctness of instance segmentation constitutes:
+    <ul>
+      <li>Counting the number of objects (some form of grouping).</li>
+      <li>Localizing all predictions.</li>
+      <li>Classifying each localized prediction.</li>
+    </ul>
+    <br>
+    We wanted to verify how good mAP is at evaluating these three tasks. We analyse the mAP (and the underlying precision-recall curves) of state-of-the-art models on the COCO dataset.
+  </div>
+  <br>
+  <div class="container is-max-desktop content">
+    <h3>Problem statement</h3>
+    An initial analysis shows that state-of-the-art models achieve significant gains in AP, but produce qualitatively unsatisfactory results with a lot of duplicates.
+    A deeper dive shows that these predictions are not penalized by AP, and rather, are rewarded by the metric. 
+    We call these low-confidence false positives <i>hedged predictions</i> because they are hedged/predicted to improve mAP, but clutter the segmentation result.
+  </div>
+  <!-- image -->
+  <div class="container is-max-desktop content is-centered has-text-centered">
+    <img src="./static/images/apcurves.png" alt="AP curves for person">
+    AP curves for person class for <b>(a) MaskNMS</b> , <b>(b) SoftNMS</b>, and <b>(c) MatrixNMS</b> shows the tremendous number of false-positives that are introduced (upto 4x compared to MaskNMS), but virtually have the same AP.
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h3>Solution</h3>
+    We propose a three-fold contribution:
+    <ul>
+      <li>Demonstrate the shortcoming of AP to quantify low-confidence false positives leading to <i>hedging</i>. </li>
+      <li>Propose existing <i>(F1, LRP)</i> and new measures <i>(DC, NE)</i> to quantify the amount of both spatial and categorical hedging.</li>
+      <li>Propose Semantic Sorting and Semantic NMS to mitigate both forms of hedging while preserving mAP.</li>
+    </ul>
+  <br>
   </div>
 </section>
 
@@ -162,36 +200,20 @@
           <img src="./static/images/image4.png" alt="image">
         </div>
       </div>
-
     </div>
   </div>
 </section> 
 
-
 <section class="section">
   <div class="container is-max-desktop content">
-    <h3>Problem statement</h3>
-    An initial analysis shows that state-of-the-art models achieve significant gains in AP, but produce qualitatively unsatisfactory results with a lot of duplicates.
-    A deeper dive shows that these predictions are not penalized by AP, and rather, are rewarded by the metric. <br>
-  </div>
-  <!-- image -->
-  <div class="container is-max-desktop content is-centered has-text-centered">
-    <img src="./static/images/apcurves.png" alt="AP curves for person">
-    AP curves for person class for <b>(a) MaskNMS</b> , <b>(b) SoftNMS</b>, and <b>(c) MatrixNMS</b> shows the tremendous number of false-positives that are introduced (upto 4x compared to MaskNMS), but virtually have the same AP.
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop content">
-    <h3>Solution</h3>
-    We propose a three-fold contribution:
     <ul>
-      <li>Demonstrate the shortcoming of AP to quantify low-confidence false positives leading to <i>hedging</i>. </li>
-      <li>Propose existing and new measures to quantify the amount of both spatial and categorical hedging.</li>
-      <li>Propose plug-and-play modules and NMS to mitigate both forms of hedging.</li>
+      <li>The underlying model for the left and right images is the same. We utilize Semantic Sorting to re-rank the predictions.</li>
+      <li>Then, the Semantic NMS ensures that instances are preserved based on occupancy of the Semantic Mask. </li>
+      <li>This prevents spatial hedging because heavily overlapping instances cannot claim the same pixels in the semantic mask. </li>
+      <li>This prevents categorical hedging because Semantic Mask at a region does not predict multiple classes. </li>
     </ul>
-  <br>
-  Please read the paper for more exciting details!
+    <br>
+    Please read the paper for more exciting details!
   </div>
 </section>
 
@@ -200,7 +222,7 @@
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3">Paper Abstract</h2>
         <div class="content has-text-justified">
           <p>
             Correctness of instance segmentation constitutes counting the number of objects, correctly localizing all predictions and classifying each localized prediction. Average
@@ -277,7 +299,7 @@
       slidesToScroll: 1,
       slidesToShow: 1,
       infinite: true,
-      autoplay: true,
+      autoplay: false,
   });
 </script>
 
